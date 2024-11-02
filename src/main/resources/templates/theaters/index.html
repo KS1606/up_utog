@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Театры</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f3e6ff; /* Лавандовый фон */
+      font-family: 'Arial', sans-serif; /* Изменение шрифта */
+    }
+    h1 {
+      color: #6f42c1; /* Лавандовый цвет для заголовка */
+      text-align: center; /* Центрирование заголовка */
+      margin-bottom: 30px; /* Отступ снизу */
+      font-weight: bold; /* Жирный шрифт */
+    }
+    .alert {
+      margin-top: 20px; /* Отступ сверху для уведомлений */
+    }
+    .btn {
+      border-radius: 20px; /* Закругленные углы кнопок */
+    }
+    .btn-primary {
+      background-color: #6f42c1; /* Лавандовый цвет кнопки */
+      border-color: #6f42c1; /* Цвет границы кнопки */
+      transition: background-color 0.3s; /* Плавный переход цвета */
+    }
+    .btn-primary:hover {
+      background-color: #5a34a1; /* Темнее при наведении */
+      border-color: #5a34a1; /* Цвет границы при наведении */
+    }
+    .btn-secondary {
+      background-color: #e0e0e0; /* Светло-серый цвет для второй кнопки */
+      border-color: #ccc; /* Цвет границы для второй кнопки */
+      transition: background-color 0.3s; /* Плавный переход цвета */
+    }
+    .btn-secondary:hover {
+      background-color: #d1d1d1; /* Темнее при наведении */
+    }
+    .table {
+      margin-top: 20px; /* Отступ сверху для таблицы */
+      border-radius: 10px; /* Закругление углов таблицы */
+      overflow: hidden; /* Обрезка границ */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Тень под таблицей */
+    }
+    th {
+      background-color: #6f42c1; /* Лавандовый цвет заголовка таблицы */
+      color: white; /* Белый цвет текста заголовка */
+    }
+    tbody tr:hover {
+      background-color: #eae6ff; /* Светло-лавандовый цвет при наведении на строку */
+    }
+  </style>
+</head>
+<body>
+<div class="container mt-4">
+  <h1>Список театров</h1>
+
+  <!-- Уведомления -->
+  <div th:if="${message}" class="alert alert-success" role="alert" th:text="${message}"></div>
+  <div th:if="${error}" class="alert alert-danger" role="alert" th:text="${error}"></div>
+
+  <div class="text-center mb-4">
+    <a href="/theaters/new" class="btn btn-primary me-2">Добавить театр</a>
+    <a href="/home" class="btn btn-secondary">На главный экран</a>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Название театра</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="theater : ${theaters}">
+      <td>
+        <a th:href="@{/theaters/{id}(id=${theater.id})}" th:text="${theater.name_theater}" class="text-decoration-none"></a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

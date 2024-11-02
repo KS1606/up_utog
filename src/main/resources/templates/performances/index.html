@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Спектакли</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+  <h1>Список спектаклей</h1>
+  <div class="text-center mb-4">
+    <a href="/performances/new" class="btn btn-primary mb-3">Добавить спектакль</a>
+    <a href="/home" class="btn btn-secondary">На главный экран</a>
+  </div>
+
+  <ul class="list-group">
+    <li th:each="performance : ${performances}" class="list-group-item">
+      <a th:href="@{/performances/{id}(id=${performance.id})}" th:text="${performance.name}" class="link-primary"></a>
+    </li>
+  </ul>
+</div>
+</body>
+</html>

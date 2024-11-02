@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редактировать роли</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #E6E6FA !important; /* Лавандовый фон страницы */
+            color: #4B0082 !important; /* Темный лавандовый цвет текста */
+        }
+        .container {
+            background-color: #F5F5FF !important; /* Бледный лавандовый цвет для контейнера */
+            padding: 30px !important;
+            border-radius: 8px !important;
+            box-shadow: 0 4px 8px rgba(75, 0, 130, 0.2) !important; /* Тень для контейнера */
+        }
+        h1 {
+            color: #4B0082 !important; /* Темный лавандовый цвет заголовка */
+        }
+        label {
+            color: #6A5ACD !important; /* Цвет для текста меток */
+        }
+        .btn-primary {
+            background-color: #9370DB !important; /* Светлый лавандовый цвет для кнопки */
+            border-color: #9370DB !important;
+        }
+        .btn-primary:hover {
+            background-color: #836FFF !important; /* Темнее при наведении */
+            border-color: #836FFF !important;
+        }
+        .btn-secondary {
+            background-color: #BDB5D5 !important; /* Лавандовый цвет для кнопки "Назад" */
+            border-color: #BDB5D5 !important;
+            color: #4B0082 !important;
+        }
+        .btn-secondary:hover {
+            background-color: #A9A9E2 !important; /* Темнее при наведении */
+            border-color: #A9A9E2 !important;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Редактировать роли для пользователя <span th:text="${user.username}"></span></h1>
+
+    <form th:action="@{/admin/users/{username}/roles(username=${user.username})}" method="post">
+        <div class="form-group">
+            <label for="role">Выберите роль:</label>
+            <select id="role" name="role" class="form-control">
+                <option value="USER">USER</option>
+                <option value="ADMIN">ADMIN</option>
+                <option value="USHER">USHER</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+
+    <a th:href="@{/admin/users}" class="btn btn-secondary mt-3">Назад к списку пользователей</a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

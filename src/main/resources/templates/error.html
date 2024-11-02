@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ошибка доступа</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f3e5f5; /* Светло-лавандовый фон */
+      color: #6f42c1; /* Темно-лавандовый текст */
+      display: flex;
+      justify-content: center; /* Центрирование по горизонтали */
+      align-items: center; /* Центрирование по вертикали */
+      height: 100vh; /* Занять всю высоту окна */
+      margin: 0; /* Убрать отступы */
+    }
+    .container {
+      background-color: #ffffff; /* Белый фон для контейнера */
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center; /* Центрирование текста внутри контейнера */
+    }
+    .btn-primary {
+      background-color: #6f42c1; /* Основной цвет кнопки */
+      border-color: #6f42c1; /* Цвет рамки кнопки */
+    }
+    .btn-primary:hover {
+      background-color: #5a31a1; /* Темнее при наведении */
+      border-color: #5a31a1;
+    }
+    h1 {
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1 class="text-danger">Ошибка доступа</h1>
+  <p th:text="${message}">У вас нет прав для доступа к этой странице.</p>
+  <a href="/" class="btn btn-primary">Вернуться на главную страницу</a>
+</div>
+</body>
+</html>

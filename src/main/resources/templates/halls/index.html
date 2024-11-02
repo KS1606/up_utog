@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список залов</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Список залов</h1>
+    <div class="text-center mb-4">
+        <a href="/halls/new" class="btn btn-primary">Добавить зал</a>
+        <a href="/home" class="btn btn-secondary">На главный экран</a>
+    </div>
+        <ul class="list-group mt-3">
+        <li th:each="hall : ${halls}" class="list-group-item">
+            <a th:href="@{/halls/{id}(id=${hall.id})}" th:text="${hall.name}"></a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

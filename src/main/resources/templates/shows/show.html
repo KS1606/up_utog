@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Детали показа</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Показ спектакля</h1>
+    <p><strong>Дата:</strong> <span th:text="${show.showDate}"></span></p>
+    <p><strong>Время:</strong> <span th:text="${show.showTime}"></span></p>
+    <p><strong>Спектакль:</strong> <span th:text="${show.performance.name}"></span></p>
+    <p><strong>Театр:</strong> <span th:text="${show.hall.theater.name_theater}"></span></p>
+    <p><strong>Зал:</strong> <span th:text="${show.hall.name}"></span></p>
+    <p><strong>Адрес театра:</strong> <span th:text="${show.hall.theater.address}"></span></p>
+
+    <a th:href="@{/performances/{id}(id=${show.performance.id})}" class="btn btn-info">Подробнее о спектакле</a>
+    <br><br>
+
+    <!-- Секция для отображения списка билетов -->
+    <h2>Билеты на этот показ</h2>
+    <table class="table table-striped mt-3">
+        <thead>
+        <tr>
+            <th>Место</th>
+            <th>Цена</th>
+            <th>Статус</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ticket : ${tickets}">
+            <td th:text="${ticket.seatNumber}">Место</td>
+            <td th:text="${ticket.price}">Цена</td>
+            <td th:text="${ticket.status}">Статус</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="/shows" class="btn btn-secondary">Назад к списку</a>
+    <a th:href="@{/shows/{id}/edit(id=${show.id})}" class="btn btn-warning">Редактировать</a>
+    <form th:action="@{/shows/{id}/delete(id=${show.id})}" method="post" style="display: inline;">
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Вы уверены, что хотите удалить этот показ?')">Удалить</button>
+    </form>
+</div>
+</body>
+</html>

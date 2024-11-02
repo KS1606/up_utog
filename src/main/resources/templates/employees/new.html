@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить сотрудника</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Добавить сотрудника</h1>
+    <form th:action="@{/employees}" th:object="${employee}" method="post">
+        <div class="form-group">
+            <label for="name">Имя сотрудника</label>
+            <input type="text" id="name" th:field="*{name}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="position">Должность</label>
+            <input type="text" id="position" th:field="*{position}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="salary">Зарплата</label>
+            <input type="number" id="salary" th:field="*{salary}" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="products">Продукты</label>
+            <select id="products" name="productIds" class="form-control" multiple>
+                <option th:each="product : ${products}"
+                        th:value="${product.id}"
+                        th:text="${product.productName}"></option>
+            </select>
+        </div>
+        <button class="btn btn-success">Сохранить</button>
+        <a href="/employees" class="btn btn-secondary">Назад</a>
+    </form>
+</div>
+</body>
+</html>

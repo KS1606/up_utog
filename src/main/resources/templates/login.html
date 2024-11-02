@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Вход</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f3e6ff; /* Лавандовый фон */
+        }
+        .card {
+            border: none; /* Убираем рамку */
+            border-radius: 15px; /* Сглаженные углы */
+        }
+        .card-body {
+            background-color: #ffffff; /* Белый фон для карточки */
+            border-radius: 15px; /* Сглаженные углы */
+        }
+        h2 {
+            color: #6f42c1; /* Лаванда для заголовка */
+        }
+        .btn-primary {
+            background-color: #6f42c1; /* Лаванда для кнопки */
+            border: none; /* Убираем рамку */
+        }
+        .btn-primary:hover {
+            background-color: #5a31a1; /* Темнее на наведении */
+        }
+        .btn-link {
+            color: #6f42c1; /* Лаванда для ссылок */
+        }
+        .btn-link:hover {
+            text-decoration: underline; /* Подчеркивание при наведении */
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Вход</h2>
+                    <form th:action="@{/login}" method="post">
+                        <div class="form-group">
+                            <label for="username">Имя пользователя:</label>
+                            <input type="text" id="username" name="username" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Пароль:</label>
+                            <input type="password" id="password" name="password" class="form-control" required>
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary btn-block">Войти</button>
+                        </div>
+                    </form>
+                    <div class="text-center">
+                        <p>Нет аккаунта? <a th:href="@{/register}" class="btn btn-link">Зарегистрироваться</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

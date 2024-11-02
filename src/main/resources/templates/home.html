@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f3e6ff; /* Лавандовый фон */
+        }
+        h1 {
+            color: #6f42c1; /* Лавандовый цвет для заголовка */
+        }
+        .list-group-item {
+            background-color: #ffffff; /* Белый фон для элементов списка */
+            border: 1px solid #6f42c1; /* Лаванда для границы */
+            border-radius: 10px; /* Сглаженные углы */
+        }
+        .list-group-item:hover {
+            background-color: #6f42c1; /* Лаванда на наведении */
+            color: white; /* Белый цвет текста на наведении */
+        }
+        .container {
+            max-width: 600px; /* Максимальная ширина контейнера */
+            margin-top: 100px; /* Отступ сверху */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center mb-4">Добро пожаловать на главную страницу!</h1>
+    <div class="list-group">
+        <a class="list-group-item list-group-item-action" th:href="@{/employees}">Сотрудники</a>
+        <a class="list-group-item list-group-item-action" th:href="@{/theaters}">Театры</a>
+        <a class="list-group-item list-group-item-action" th:href="@{/halls}">Зал</a>
+        <a class="list-group-item list-group-item-action" th:href="@{/performances}">Спектакли</a>
+        <a class="list-group-item list-group-item-action" th:href="@{/shows}">Показы</a>
+        <a class="list-group-item list-group-item-action" th:href="@{/customers}">Клиенты</a>
+        <a class="list-group-item list-group-item-action" th:href="@{/tickets}">Билеты</a>
+        <a class="list-group-item list-group-item-action" th:href="@{/purchases}">Покупка</a>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

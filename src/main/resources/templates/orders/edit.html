@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать заказ</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Редактировать заказ</h1>
+    <form th:action="@{/orders/{id}(id=${order.id})}" th:object="${order}" method="post">
+        <div class="form-group">
+            <label for="orderNumber">Номер заказа</label>
+            <input type="text" id="orderNumber" th:field="*{orderNumber}" class="form-control" required>
+        </div>
+
+        <p>Дата заказа: <span th:text="${formattedOrderDate}"></span></p>
+
+        <div class="form-group">
+            <label for="totalAmount">Общая сумма</label>
+            <input type="number" id="totalAmount" th:field="*{totalAmount}" class="form-control" step="0.01" required>
+        </div>
+
+        <div class="form-group">
+            <label for="customer">Клиент</label>
+            <select id="customer" name="customerId" class="form-control" required>
+                <option th:each="customer : ${customers}"
+                        th:value="${customer.id}"
+                        th:text="${customer.customerName}"
+                        th:selected="${customer.id == order.customer.id}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="products">Продукты</label>
+            <select multiple id="products" name="productIds" class="form-control" required>
+                <th:block th:each="product : ${products}">
+                    <option th:value="${product.id}" th:text="${product.productName}"
+                            th:selected="${order.products.contains(product)}"></option>
+                </th:block>
+            </select>
+        </div>
+
+        <div th:if="${errorMessage}" class="alert alert-danger">
+            <span th:text="${errorMessage}"></span>
+        </div>
+
+        <button class="btn btn-success">Сохранить изменения</button>
+        <a href="/orders" class="btn btn-secondary">Назад</a>
+    </form>
+</div>
+</body>
+</html>

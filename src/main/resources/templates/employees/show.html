@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о сотруднике</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Информация о сотруднике</h1>
+    <div>
+        <h2 th:text="${employee.name}">Имя сотрудника</h2>
+        <p><strong>ID сотрудника:</strong> <span th:text="${employee.id}">1</span></p>
+        <p><strong>Должность:</strong> <span th:text="${employee.position}">Должность сотрудника</span></p>
+        <p><strong>Зарплата:</strong> <span th:text="${employee.salary}">50000</span> Рублей</p>
+        <p><strong>Продукты:</strong>
+            <span th:each="product : ${employee.products}" th:text="${product.productName}">Продукт</span>
+        </p>
+    </div>
+    <a class="btn btn-secondary" th:href="@{/employees}">Назад к списку сотрудников</a>
+
+    <a class="btn btn-warning" th:href="@{/employees/{id}/edit(id=${employee.id})}">Изменить сотрудника</a>
+
+    <form th:action="@{/employees/{id}/delete(id=${employee.id})}" method="post" onsubmit="return confirm('Вы уверены, что хотите удалить сотрудника?');">
+        <button class="btn btn-danger">Удалить сотрудника</button>
+    </form>
+</div>
+</body>
+</html>

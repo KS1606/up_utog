@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать покупку</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Редактировать покупку</h1>
+    <form th:action="@{/purchases/{id}(id=${purchase.id})}" th:object="${purchase}" method="post">
+
+        <!-- Поле выбора клиента -->
+        <div class="mb-3">
+            <label for="customer" class="form-label">Клиент</label>
+            <select id="customer" th:field="*{customer}" class="form-select">
+                <option th:each="customer : ${customers}"
+                        th:value="${customer.id}"
+                        th:text="${customer.name_user}"
+                        th:selected="${customer.id == purchase.customer.id}"></option>
+            </select>
+        </div>
+
+        <!-- Поле выбора билетов с расчетом суммы -->
+        <div class="mb-3">
+            <label for="tickets" class="form-label">Билеты</label>
+            <select id="tickets" th:field="*{tickets}" class="form-select" multiple onchange="updateTotal()">
+                <option th:each="ticket : ${tickets}"
+                        th:value="${ticket.id}"
+                        th:data-price="${ticket.price}"
+                th:text="${ticket.show.performance.name} + ' - Место: ' + ${ticket.seatNumber} + ', Цена: ' + ${ticket.price}"
+                th:selected="${purchase.tickets.contains(ticket)}"></option>
+            </select>
+        </div>
+
+        <!-- Вывод суммы -->
+        <div class="mb-3">
+            <label class="form-label">Сумма выбранных билетов:</label>
+            <div id="totalAmount" class="fw-bold">0</div> <!-- Вывод суммы -->
+        </div>
+
+        <!-- Кнопки действий -->
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <a href="/purchases" class="btn btn-secondary">Отмена</a>
+    </form>
+</div>
+
+<!-- JavaScript для расчета суммы -->
+<script>
+    function updateTotal() {
+        const ticketSelect = document.getElementById('tickets');
+        let total = 0;
+
+        // Суммируем стоимость выбранных билетов
+        Array.from(ticketSelect.selectedOptions).forEach(option => {
+            total += parseFloat(option.getAttribute('data-price')) || 0;
+        });
+
+        // Отображаем сумму
+        document.getElementById('totalAmount').textContent = total.toFixed(2) + ' ₽';
+    }
+
+    // Инициализируем сумму при загрузке
+    document.addEventListener('DOMContentLoaded', updateTotal);
+</script>
+</body>
+</html>
